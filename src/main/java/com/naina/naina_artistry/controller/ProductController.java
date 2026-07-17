@@ -5,15 +5,15 @@ package com.naina.naina_artistry.controller;
     import com.naina.naina_artistry.service.ProductService;
     import org.springframework.beans.factory.annotation.Autowired;
     import org.springframework.web.bind.annotation.*;
-    import org.springframework.web.multipart.MultipartFile;
-    import java.io.File;
-    import java.io.IOException;
     import java.util.List;
     import jakarta.annotation.PostConstruct;
 
     @RestController
     @RequestMapping("/products")
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = {
+            "http://localhost:3000",
+            "https://naina-artistry-frontend.onrender.com"
+    })
 
     public class ProductController {
 
@@ -49,24 +49,5 @@ package com.naina.naina_artistry.controller;
             service.deleteProduct(id);
         }
 
-        @PostMapping("/upload")
-        public String uploadImage(@RequestParam("image") MultipartFile image) throws IOException {
 
-            String uploadDir = "C:/naina-images/";
-            File dir = new File(uploadDir);
-            if (!dir.exists()) {
-                dir.mkdirs();
-            }
-
-            String fileName = image.getOriginalFilename();
-
-            File destination = new File(dir, fileName);
-
-            image.transferTo(destination);
-
-            System.out.println("Saved to: " + destination.getAbsolutePath());
-            System.out.println("Exists: " + destination.exists());
-
-            return "http://localhost:8080/images/" + fileName;
-        }
     }

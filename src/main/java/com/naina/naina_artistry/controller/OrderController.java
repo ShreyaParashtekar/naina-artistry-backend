@@ -9,7 +9,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/orders")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = {
+        "http://localhost:3000",
+        "https://naina-artistry-frontend.onrender.com"
+})
 public class OrderController {
 
     @Autowired

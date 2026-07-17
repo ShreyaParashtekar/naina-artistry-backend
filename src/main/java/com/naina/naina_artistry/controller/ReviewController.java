@@ -9,7 +9,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/reviews")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = {
+        "http://localhost:3000",
+        "https://naina-artistry-frontend.onrender.com"
+})
 public class ReviewController {
 
     @Autowired
