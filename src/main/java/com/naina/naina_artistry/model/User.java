@@ -2,7 +2,9 @@ package com.naina.naina_artistry.model;
 
 
 import jakarta.persistence.*;
+import jakarta.persistence.Table;
 @Entity
+@Table(name = "users")
 public class User {
 
     @Id
