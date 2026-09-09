@@ -14,6 +14,15 @@ public class UserService {
     private UserRepository repo;
 
     public User register(User user) {
+
+        List<User> existingUsers = repo.findByEmail(user.getEmail().trim());
+
+        if (!existingUsers.isEmpty()) {
+            throw new RuntimeException("Email already registered");
+        }
+
+        user.setEmail(user.getEmail().trim());
+
         return repo.save(user);
     }
 

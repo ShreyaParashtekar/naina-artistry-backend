@@ -6,6 +6,7 @@ import com.naina.naina_artistry.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.naina.naina_artistry.model.ChangePasswordRequest;
+import org.springframework.http.ResponseEntity;
 
 @RestController
 @RequestMapping("/users")
@@ -21,8 +22,24 @@ public class UserController {
 
     // Register
     @PostMapping("/register")
-    public User register(@RequestBody User user) {
-        return service.register(user);
+    public ResponseEntity<?> register(@RequestBody User user) {
+
+        try {
+            User registeredUser = service.register(user);
+            return ResponseEntity.ok(registeredUser);
+
+        } catch (RuntimeException e) {
+
+            if (e.getMessage().equals("Email already registered")) {
+                return ResponseEntity
+                        .status(409)
+                        .body("Email already registered");
+            }
+
+            return ResponseEntity
+                    .status(500)
+                    .body("Registration failed");
+        }
     }
 
     // Login
