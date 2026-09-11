@@ -11,7 +11,7 @@ import java.util.List;
 @RequestMapping("/orders")
 @CrossOrigin(origins = {
         "http://localhost:3000",
-        "https://naina-artistry-frontend.onrender.com"
+        "https://naina-artistry-frontend-1.onrender.com"
 })
 public class OrderController {
 

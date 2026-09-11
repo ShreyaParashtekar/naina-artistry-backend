@@ -12,7 +12,7 @@ package com.naina.naina_artistry.controller;
     @RequestMapping("/products")
     @CrossOrigin(origins = {
             "http://localhost:3000",
-            "https://naina-artistry-frontend.onrender.com"
+            "https://naina-artistry-frontend-1.onrender.com"
     })
 
     public class ProductController {
